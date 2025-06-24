@@ -24,6 +24,13 @@ Endpoints
 |---------|---------|-------------|
 | POST| /api/ai/generate | Procesa prompts de usuario     |
 
+* Ejemplo de un uso incorrecto:
+
+![bad ex](Assets/badEj.png)
+
+* Ejemplo de uso correcto
+
+![good ex](Assets/goodEx.png)
 
 ## Validación de Entradas
 
@@ -31,3 +38,9 @@ Se ha implementado un módulo de validación de entradas que intercepta las soli
 
 Este módulo valida ciertos aspectos de las solicitudes, como la longitud del prompt, la presencia de caracteres no permitidos, calidad del texto, etc.
 .
+
+## Diagrama de clases
+
+![Diagrama de clases](Assets/diagramaClases.png)
+
+

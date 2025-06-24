@@ -12,17 +12,11 @@ import org.springframework.stereotype.Component;
 @Primary
 public class ProxyAdapter implements IAiAdapter {
     private final IAiAdapter chatGptAdapter;
-    private final IAiAdapter copilotAdapter;
     private final InputValidator validator;
 
-    @Autowired
-    public ProxyAdapter(
-            @Qualifier("chatGptAdapter") IAiAdapter chatGptAdapter,
-            @Qualifier("copilotAdapter") IAiAdapter copilotAdapter,
-            InputValidator validator
-    ) {
+    public ProxyAdapter(IAiAdapter chatGptAdapter, IAiAdapter copilotAdapter,
+            InputValidator validator) {
         this.chatGptAdapter = chatGptAdapter;
-        this.copilotAdapter = copilotAdapter;
         this.validator = validator;
     }
 
@@ -30,8 +24,7 @@ public class ProxyAdapter implements IAiAdapter {
     public String generateResponse(String input) {
         String processedInput = validator.validateAndProcess(input);
 
-        IAiAdapter targetAdapter = shouldUseCopilot(processedInput) ?
-                copilotAdapter : chatGptAdapter;
+        IAiAdapter targetAdapter = chatGptAdapter;
 
         return targetAdapter.generateResponse(processedInput);
     }
@@ -39,9 +32,5 @@ public class ProxyAdapter implements IAiAdapter {
     @Override
     public String getEstado() {
         return "proxy";
-    }
-
-    private boolean shouldUseCopilot(String input) {
-        return input.matches(".*(def|function|class|import|public).*");
     }
 }
