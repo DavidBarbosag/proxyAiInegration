@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>AI Integration</name>
-    <description>Spring Boot Project for AI Integration using ChatGPT and Copilot</description>
+    <description>Spring Boot Project for AI Integration using ChatGPT</description>
 
     <properties>
         <java.version>17</java.version>

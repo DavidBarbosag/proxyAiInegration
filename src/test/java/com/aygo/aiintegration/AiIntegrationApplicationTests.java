@@ -18,9 +18,6 @@ class AiIntegrationApplicationTests {
     @Value("${api.chatgpt.url}")
     private String chatGptUrl;
 
-    @Value("${api.copilot.url}")
-    private String copilotUrl;
-
     private MockWebServer mockWebServer;
 
     @BeforeEach
@@ -51,19 +48,5 @@ class AiIntegrationApplicationTests {
 
         assertThat(response.getStatusCodeValue()).isEqualTo(200);
         assertThat(response.getBody()).contains("Respuesta de ChatGPT simulada");
-    }
-
-    @Test
-    void testCopilotEndpoint() {
-        mockWebServer.enqueue(new MockResponse()
-                .setBody("{\"response\": \"Código generado por Copilot simulado\"}")
-                .addHeader("Content-Type", "application/json"));
-
-        TestRestTemplate restTemplate = new TestRestTemplate();
-        String input = "Escribe una función en Java para sumar dos números.";
-        ResponseEntity<String> response = restTemplate.postForEntity("/copilot/generate", input, String.class);
-
-        assertThat(response.getStatusCodeValue()).isEqualTo(200);
-        assertThat(response.getBody()).contains("Código generado por Copilot simulado");
     }*/
 }

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 /*
- * Adaptador que actúa como proxy para seleccionar entre ChatGPT y Copilot, además de validar la entrada.
+ * Adaptador que actúa como proxy para seleccionar entre ChatGPT, además de validar la entrada.
  */
 @Component
 @Primary
@@ -14,8 +14,7 @@ public class ProxyAdapter implements IAiAdapter {
     private final IAiAdapter chatGptAdapter;
     private final InputValidator validator;
 
-    public ProxyAdapter(IAiAdapter chatGptAdapter, IAiAdapter copilotAdapter,
-            InputValidator validator) {
+    public ProxyAdapter(IAiAdapter chatGptAdapter, InputValidator validator) {
         this.chatGptAdapter = chatGptAdapter;
         this.validator = validator;
     }
