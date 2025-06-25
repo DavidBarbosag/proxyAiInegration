@@ -43,4 +43,14 @@ Este módulo valida ciertos aspectos de las solicitudes, como la longitud del pr
 
 ![Diagrama de clases](Assets/diagramaClases.png)
 
+## Despliegue en AWS
+
+Usando una instancia EC2 y añadiendo en las reglas la apertura del puerto 8080
+![{3F147BDE-59C1-41F0-A373-CA7CB0453B64}](https://github.com/user-attachments/assets/dd48b8ad-ac70-40e1-a004-d8d347ae532b)
+
+Prueba desde Postman
+
+![{30D57E67-2D99-4143-8FC1-95793FF34DD6}](https://github.com/user-attachments/assets/1bebe3c1-8d3e-4681-87ba-f307e17cdff6)
+
+
 
