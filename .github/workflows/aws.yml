@@ -25,7 +25,7 @@ jobs:
       - name: Deploy to EC2 using SCP
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: 13.221.243.153
+          host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
@@ -35,9 +35,15 @@ jobs:
       - name: Restart Spring Boot App
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 13.221.243.153
+          host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             pkill -f 'ai-integration-1.0.0.jar' || true
+
+            # Exporta las variables de entorno necesarias
+            export API_CHATGPT_KEY="${{ secrets.API_CHATGPT_KEY }}"
+            export API_CHATGPT_URL="${{ secrets.API_CHATGPT_URL }}"
+
+            # Ejecuta la aplicación con nohup
             nohup java -jar /home/ec2-user/proxyAiInegration/ai-integration-1.0.0.jar > output.log 2>&1 &
