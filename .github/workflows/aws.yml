@@ -1,0 +1,43 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [main]  # cambia si tu rama principal es distinta
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Java and Maven
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Build with Maven
+      run: mvn clean package
+
+    - name: Copy JAR to EC2
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_KEY }}
+        source: "target/ai-integration-1.0.0.jar"
+        target: "/home/ec2-user/proxyAiIntegration"
+
+    - name: Run app on EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          pkill -f ai-integration || true
+          export API_CHATGPT_KEY="${{ secrets.API_CHATGPT_KEY }}"
+          export API_CHATGPT_URL="${{ secrets.API_CHATGPT_URL }}"
+          nohup java -jar /home/ec2-user/proxyAiIntegration/ai-integration-1.0.0.jar > output.log 2>&1 &
