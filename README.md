@@ -56,8 +56,11 @@ Clases:
 AlphavantageAdapter
 StockController
 
+![dCN](https://github.com/user-attachments/assets/4f4c2d66-9319-4680-86fa-04a4164a52de)
+
+
 Tambien se diseño un metodo el cual toma las dos respuestas a las peticiones realizadas, las junta y arreglas un
-prompt para enviar a chatgpt, el cual nos da una respuesta de en cual de las dos acciones es mejor invertir
+prompt para enviar a chatgpt, el cual nos da una respuesta de en cual de las dos acciones es mejor invertir.
 
 
 
