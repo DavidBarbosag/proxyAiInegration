@@ -33,13 +33,13 @@ public class AiService {
      * @return La respuesta generada por el adaptador seleccionado.
      */
     public String generateResponse(String input) {
-        String cleanedInput = InputAnalyzer.cleanInput(input);
-        boolean isCode = InputAnalyzer.isCode(cleanedInput);
-        String newInput = InputAnalyzer.improveInput(cleanedInput, isCode);
-        return proxyAdapter.generateResponse(newInput);
+        return proxyAdapter.generateResponse(input);
     }
 
-    public String generateResponseStock(String input) {
+    public String generateResponseStock(String input, String input2) {
+        String answer1 = generateResponse(input);
+        String answer2 = generateResponse(input2);
+        String inputChat = "analiza cual es mejor inversion entre: " + answer1 + "y " + answer2;
         return stockAdapter.generateResponseStock();
     }
 
