@@ -20,7 +20,7 @@ public class StockController {
         this.objectMapper = objectMapper;
     }
 
-    @PostMapping("/consultStock")
+    @GetMapping("/consultStock")
     public ResponseEntity<String> generateResponseStock() {
         try {
 
