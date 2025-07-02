@@ -2,6 +2,7 @@ package com.aygo.aiintegration.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -72,5 +73,11 @@ public class ChatGPTController {
 
         // Convierte el mapa en un JSON válido
         return objectMapper.writeValueAsString(payload);
+    }
+
+    @PostConstruct
+    public void checkEnvVars() {
+        System.out.println("API_CHATGPT_KEY: " + apiKey);
+        System.out.println("API_CHATGPT_URL: " + apiUrl);
     }
 }
