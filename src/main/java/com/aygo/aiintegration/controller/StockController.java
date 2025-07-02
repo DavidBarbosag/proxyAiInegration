@@ -26,8 +26,10 @@ public class StockController {
 
             // Realiza la solicitud al endpoint de OpenAI
             String response = webClient.post()
-                    .uri(apiUrl).toString();
-
+                    .uri(apiUrl)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
