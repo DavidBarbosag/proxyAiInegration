@@ -11,7 +11,7 @@ public class StockController {
     private final WebClient webClient;
     private final ObjectMapper objectMapper;
 
-    private String apiUrl = "U7N1OGPA00M1V5BT";
+    private String apiUrl = "https://www.alphavantage.co/query?";
     private String apiKey = "U7N1OGPA00M1V5BT";
     private String function = "function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=U7N1OGPA00M1V5BT";
 
