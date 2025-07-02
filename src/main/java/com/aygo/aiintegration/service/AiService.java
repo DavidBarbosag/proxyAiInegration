@@ -1,5 +1,6 @@
 package com.aygo.aiintegration.service;
 
+import com.aygo.aiintegration.adapter.AlphavantageAdapter;
 import com.aygo.aiintegration.adapter.IAiAdapter;
 import com.aygo.aiintegration.analyzer.InputAnalyzer;
 import com.aygo.aiintegration.adapter.ProxyAdapter;
@@ -11,10 +12,11 @@ import java.util.List;
 public class AiService {
 
     private final IAiAdapter proxyAdapter;
+    private final AlphavantageAdapter stockAdapter;
 
-    public AiService(IAiAdapter proxyAdapter) {
+    public AiService(IAiAdapter proxyAdapter, AlphavantageAdapter stockAdapter) {
         this.proxyAdapter = proxyAdapter;
-
+        this.stockAdapter = stockAdapter;
         if (proxyAdapter.getEstado().equals("proxy")) {
             List<IAiAdapter> adapters = List.of(proxyAdapter);
             adapters.stream()
@@ -35,6 +37,10 @@ public class AiService {
         boolean isCode = InputAnalyzer.isCode(cleanedInput);
         String newInput = InputAnalyzer.improveInput(cleanedInput, isCode);
         return proxyAdapter.generateResponse(newInput);
+    }
+
+    public String generateResponseStock(String input) {
+        return stockAdapter.generateResponseStock();
     }
 
 }

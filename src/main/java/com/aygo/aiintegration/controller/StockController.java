@@ -1,15 +1,9 @@
 package com.aygo.aiintegration.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
-
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/consult")
@@ -27,7 +21,7 @@ public class StockController {
     }
 
     @PostMapping("/consultStock")
-    public ResponseEntity<String> generateResponseStock(@RequestBody String input) {
+    public ResponseEntity<String> generateResponseStock() {
         try {
 
             // Realiza la solicitud al endpoint de OpenAI
