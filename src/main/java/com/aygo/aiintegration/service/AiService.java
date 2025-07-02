@@ -36,4 +36,5 @@ public class AiService {
         String newInput = InputAnalyzer.improveInput(cleanedInput, isCode);
         return proxyAdapter.generateResponse(newInput);
     }
+
 }
