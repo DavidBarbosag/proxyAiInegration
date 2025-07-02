@@ -1,3 +1,5 @@
+# Parcial intersemestral
+
 # Implementación del patrón de diseño proxy a una aplicacion de integración de IA en aplicaciones web, añádiendo un módulo de validación de entradas.
 
 Tomando como base el proyecto de [ginnko2019/aaintegration](https://github.com/ginnko2019/aaintegration), se ha implementado un patrón de diseño proxy para añadir una capa de validación de entradas
@@ -43,14 +45,26 @@ Este módulo valida ciertos aspectos de las solicitudes, como la longitud del pr
 
 ![Diagrama de clases](Assets/diagramaClases.png)
 
+
+
+# Implementacion de API alphavantage
+
+Ahora se añadieron nuevas clases para la gestion de la nueva api
+
+Clases:
+
+AlphavantageAdapter
+StockController
+
+Tambien se diseño un metodo el cual toma las dos respuestas a las peticiones realizadas, las junta y arreglas un
+prompt para enviar a chatgpt, el cual nos da una respuesta de en cual de las dos acciones es mejor invertir
+
+
+
+ 
 ## Despliegue en AWS
 
 Usando una instancia EC2 y añadiendo en las reglas la apertura del puerto 8080
-![{3F147BDE-59C1-41F0-A373-CA7CB0453B64}](https://github.com/user-attachments/assets/dd48b8ad-ac70-40e1-a004-d8d347ae532b)
-
-Prueba desde Postman
-
-![{30D57E67-2D99-4143-8FC1-95793FF34DD6}](https://github.com/user-attachments/assets/1bebe3c1-8d3e-4681-87ba-f307e17cdff6)
-
-
+usando el siguiente link para enviar las solicitudes http
+[despliegue](http://44.211.213.39:8080/consult/consultStock)
 
