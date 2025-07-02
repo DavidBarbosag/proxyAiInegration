@@ -11,9 +11,9 @@ public class StockController {
     private final WebClient webClient;
     private final ObjectMapper objectMapper;
 
-    private String apiUrl = "https://www.alphavantage.co/query?";
+    private String apiUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=U7N1OGPA00M1V5BT";
     private String apiKey = "U7N1OGPA00M1V5BT";
-    private String function = "function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=U7N1OGPA00M1V5BT";
+    private String function = "https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=IBM&apikey=U7N1OGPA00M1V5BT";
 
     public StockController(WebClient.Builder webClientBuilder, ObjectMapper objectMapper) {
         this.webClient = webClientBuilder.build();
@@ -26,11 +26,7 @@ public class StockController {
 
             // Realiza la solicitud al endpoint de OpenAI
             String response = webClient.post()
-                    .uri(apiUrl)
-                    .bodyValue(function)
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .block();
+                    .uri(apiUrl).toString();
 
             return ResponseEntity.ok(response);
 
